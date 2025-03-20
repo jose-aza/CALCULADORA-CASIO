@@ -111,3 +111,27 @@ function calculateResult() {
     display.value = result;
     currentInput = result.toString(); // Guardar el resultado para continuar operaciones
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const number = button.getAttribute('data-number');
+            const operator = button.getAttribute('data-operator');
+            const func = button.getAttribute('data-func');
+
+            if (number !== null) {
+                appendNumber(number);
+            } else if (operator !== null) {
+                appendOperator(operator);
+            } else if (func !== null) {
+                executeFunction(func);
+            } else if (button.id === 'clear') {
+                clearDisplay();
+            } else if (button.id === 'equals') {
+                calculateResult();
+            }
+        });
+    });
+});
